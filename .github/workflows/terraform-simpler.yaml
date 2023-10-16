@@ -12,7 +12,7 @@ env:
 jobs:
 
   terraform-apply:
-    uses: "./.github/workflows/terraform-azure@main"
+    uses: "./.github/workflows/terraform-azure"
     with:
       terraform_version: 1.5.5
       terraform_working_directory: ./src/terraform/app
