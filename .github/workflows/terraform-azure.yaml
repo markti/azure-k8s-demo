@@ -58,8 +58,9 @@ jobs:
       TERRAFORM_BACKEND_RESOURCE_GROUP_NAME: ${{ inputs.terraform_state_resource_group }}
       TERRAFORM_BACKEND_STORAGE_ACCOUNT_NAME: ${{ inputs.terraform_state_storage_account }}
       TERRAFORM_BACKEND_STORAGE_CONTAINER_NAME: ${{ inputs.terraform_state_storage_container }}
-      TERRAFORM_BACKEND_KEY: ${{ inputs.APPLICATION_NAME }}-${{ inputs.ENVIRONMENT_NAME }}
+      TERRAFORM_BACKEND_KEY: ${{ inputs.application_name }}-${{ inputs.environment_name }}
       TERRAFORM_OPERATION: ${{ inputs.terraform_operation }}
+    environment: ${{ inputs.environment_name }}
     steps:
     - uses: actions/checkout@v3
 
