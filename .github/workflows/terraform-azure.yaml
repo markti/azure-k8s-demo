@@ -3,6 +3,12 @@ name: Terraform-Azure
 on:
   workflow_call:
     inputs:
+      application_name:
+        required: true
+        type: string
+      environment_name:
+        required: true
+        type: string
       terraform_version:
         required: true
         type: string
@@ -46,14 +52,13 @@ jobs:
         shell: bash
     env:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      ARM_ENVIRONMENT: ${{ inputs.cloud-type }}
+      ARM_CLIENT_ID: ${{ inputs.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ inputs.ARM_CLIENT_SECRET }}
+      ARM_TENANT_ID: ${{ inputs.ARM_TENANT_ID }}
       TERRAFORM_BACKEND_RESOURCE_GROUP_NAME: ${{ inputs.terraform_state_resource_group }}
       TERRAFORM_BACKEND_STORAGE_ACCOUNT_NAME: ${{ inputs.terraform_state_storage_account }}
       TERRAFORM_BACKEND_STORAGE_CONTAINER_NAME: ${{ inputs.terraform_state_storage_container }}
-      TERRAFORM_BACKEND_KEY: ${{ env.APPLICATION_NAME }}-${{ env.ENVIRONMENT_NAME }}
+      TERRAFORM_BACKEND_KEY: ${{ inputs.APPLICATION_NAME }}-${{ inputs.ENVIRONMENT_NAME }}
       TERRAFORM_OPERATION: ${{ inputs.terraform_operation }}
     steps:
     - uses: actions/checkout@v3

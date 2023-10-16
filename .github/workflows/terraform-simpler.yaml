@@ -15,7 +15,7 @@ jobs:
     uses: "./terraform-azure.yaml"
     with:
       terraform_version: 1.5.5
-      terraform_working_directory: ./src/terraform
+      terraform_working_directory: ./src/terraform/app
       terraform_operation: apply
       terraform_state_resource_group: ${{ vars.BACKEND_RESOURCE_GROUP_NAME }}
       terraform_state_storage_account: ${{ vars.BACKEND_STORAGE_ACCOUNT_NAME }}
