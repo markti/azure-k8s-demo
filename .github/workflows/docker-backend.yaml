@@ -1,4 +1,4 @@
-name: Packer-Backend
+name: Docker-Backend
 
 on:
   workflow_dispatch:
@@ -6,13 +6,11 @@ on:
     branches: 
     - main
     paths:
-    - 'src/packer/backend/**'
     - 'src/dotnet/backend/**'
 
 env:
   DOTNET_VERSION: '6.0.401' # The .NET SDK version to use
-  PACKER_VERSION: '1.9.4' # The version of Packer to use
-  WORKING_DIRECTORY: "./src/packer/backend"
+  DOCKER_WORKING_DIRECTORY: "./src/dotnet/backend"
   DOTNET_WORKING_DIRECTORY: "./src/dotnet/backend/FleetAPI"
 
 jobs:
@@ -83,7 +81,7 @@ jobs:
 
     - id: agent-ipaddress
       name: Check Path
-      working-directory: ${{ env.WORKING_DIRECTORY }}
+      working-directory: ${{ env.DOCKER_WORKING_DIRECTORY }}
       run: |
         ipaddress=$(curl -s http://checkip.amazonaws.com)
         echo $ipaddress
@@ -91,28 +89,22 @@ jobs:
 
     - name: Copy Deployment Package
       run: |
-        cp ./deployment.zip ${{ env.WORKING_DIRECTORY }}/deployment.zip
+        cp ./deployment.zip ${{ env.DOCKER_WORKING_DIRECTORY }}/deployment.zip
 
     - name: Check Files
-      working-directory: ${{ env.WORKING_DIRECTORY }}
+      working-directory: ${{ env.DOCKER_WORKING_DIRECTORY }}
       run: |
         pwd
         ls
 
-    - id: setup
-      name: Setup `packer`
-      uses: hashicorp/setup-packer@main
-      with:
-        version: ${{ env.PACKER_VERSION }}
-
     - id: build
       name: Docker Build
       env:
-        PKR_VAR_arm_subscription_id: ${{ vars.ARM_SUBSCRIPTION_ID }}
-        PKR_VAR_arm_tenant_id: ${{ vars.ARM_TENANT_ID }}
-        PKR_VAR_arm_client_id: ${{ vars.PACKER_ARM_CLIENT_ID }}
-        PKR_VAR_arm_client_secret: ${{ secrets.PACKER_ARM_CLIENT_SECRET }}
-        PKR_VAR_image_version: ${{ steps.image-version.outputs.version }}
-      working-directory: ${{ env.WORKING_DIRECTORY }}
+        ARM_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
+        ARM_CLIENT_ID: ${{ vars.DOCKER_ARM_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ secrets.DOCKER_ARM_CLIENT_SECRET }}
+        DOCKER_IMAGE_VERSION: ${{ steps.image-version.outputs.version }}
+      working-directory: ${{ env.DOCKER_WORKING_DIRECTORY }}
       run: |
         docker --version
