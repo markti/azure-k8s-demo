@@ -1,4 +1,4 @@
-name: Terraform-Azure
+name: terraform-azure
 
 on:
   workflow_call:
