@@ -1,0 +1,27 @@
+name: Terraform-Apply
+
+on:
+  workflow_dispatch:
+
+env:
+  TERRAFORM_VERSION: '1.5.7'
+  WORKING_DIRECTORY: 
+  APPLICATION_NAME: fleet-ops
+  ENVIRONMENT_NAME: dev
+
+jobs:
+
+  terraform-apply:
+    uses: "./terraform-azure.yaml"
+    with:
+      terraform_version: 1.5.5
+      terraform_working_directory: ./src/terraform
+      terraform_operation: apply
+      terraform_state_resource_group: ${{ vars.BACKEND_RESOURCE_GROUP_NAME }}
+      terraform_state_storage_account: ${{ vars.BACKEND_STORAGE_ACCOUNT_NAME }}
+      terraform_state_storage_container: ${{ vars.BACKEND_STORAGE_CONTAINER_NAME }}
+      arm_tenant_id: ${{ vars.ARM_TENANT_ID }}
+      arm_subscription_id: ${{ vars.ARM_SUBSCRIPTION_ID }}
+      arm_client_id: ${{ vars.TERRAFORM_ARM_CLIENT_ID }}
+    secrets:
+      arm_client_secret: ${{ secrets.TERRAFORM_ARM_CLIENT_SECRET }}
