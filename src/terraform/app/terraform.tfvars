@@ -1,6 +1,6 @@
 primary_region            = "westus3"
 domain_name               = "cloud-stack.io"
-vnet_cidr_block           = "10.0.0.0/22"
+vnet_cidr_block           = "10.137.0.0/22"
 az_count                  = 2
 aks_orchestration_version = "1.26.6"
 aks_system_pool = {
