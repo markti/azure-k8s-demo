@@ -16,3 +16,20 @@ variable "vnet_cidr_block" {
 variable "az_count" {
   type = number
 }
+variable "aks_orchestration_version" {
+  type = string
+}
+variable "aks_system_pool" {
+  type = object({
+    vm_size        = string
+    min_node_count = number
+    max_node_count = number
+  })
+}
+variable "aks_workload_pool" {
+  type = object({
+    vm_size        = string
+    min_node_count = number
+    max_node_count = number
+  })
+}
