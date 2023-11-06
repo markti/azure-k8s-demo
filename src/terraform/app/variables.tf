@@ -33,3 +33,9 @@ variable "aks_workload_pool" {
     max_node_count = number
   })
 }
+variable "container_registry" {
+  type = object({
+    name                = string
+    resource_group_name = string
+  })
+}
