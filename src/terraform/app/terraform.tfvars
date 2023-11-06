@@ -17,3 +17,5 @@ container_registry = {
   name                = "acrfleetopsdev"
   resource_group_name = "rg-fleet-ops-dev"
 }
+keyvault_readers = ["43072cf2-ef02-43cb-99b5-c480a67550f0"]
+keyvault_admins  = ["43072cf2-ef02-43cb-99b5-c480a67550f0"]

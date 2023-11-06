@@ -39,3 +39,9 @@ variable "container_registry" {
     resource_group_name = string
   })
 }
+variable "keyvault_readers" {
+  type = list(string)
+}
+variable "keyvault_admins" {
+  type = list(string)
+}
