@@ -1,4 +1,4 @@
-name: Docker-Frontend
+name: Docker-Backend
 
 on:
   workflow_dispatch:
