@@ -27,9 +27,3 @@ resource "azurerm_role_assignment" "cluster_kubelet_acr" {
   scope                = data.azurerm_container_registry.main.id
 }
 
-#App Configuration Data Reader
-resource "azurerm_role_assignment" "cluster_kubelet_app_config" {
-  principal_id         = azurerm_user_assigned_identity.cluster_kubelet.principal_id
-  role_definition_name = "App Configuration Data Reader"
-  scope                = azurerm_app_configuration.main.id
-}
