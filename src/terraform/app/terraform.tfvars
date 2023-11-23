@@ -1,3 +1,5 @@
+application_name          = "fleet-app"
+environment_name          = "dev"
 primary_region            = "westus3"
 domain_name               = "cloud-stack.io"
 vnet_cidr_block           = "10.137.0.0/22"
@@ -13,9 +15,8 @@ aks_workload_pool = {
   min_node_count = 2
   max_node_count = 3
 }
-container_registry = {
-  name                = "acrfleetopsdev"
-  resource_group_name = "rg-fleet-ops-dev"
-}
-keyvault_readers = ["43072cf2-ef02-43cb-99b5-c480a67550f0"]
-keyvault_admins  = ["43072cf2-ef02-43cb-99b5-c480a67550f0"]
+container_registry_pushers = ["466a3a08-bd10-4a07-be0f-327a2de48073"]
+keyvault_readers           = ["43072cf2-ef02-43cb-99b5-c480a67550f0"]
+keyvault_admins            = ["43072cf2-ef02-43cb-99b5-c480a67550f0"]
+k8s_service_account_name   = "workload"
+k8s_namespace              = "app"

@@ -9,7 +9,6 @@ resource "azurerm_kubernetes_cluster" "main" {
   oidc_issuer_enabled       = true
   workload_identity_enabled = true
 
-
   default_node_pool {
     name                        = "systempool"
     vm_size                     = var.aks_system_pool.vm_size
@@ -49,6 +48,11 @@ resource "azurerm_kubernetes_cluster" "main" {
   key_vault_secrets_provider {
     secret_rotation_enabled  = true
     secret_rotation_interval = "5m"
+  }
+
+  oms_agent {
+    log_analytics_workspace_id      = azurerm_log_analytics_workspace.main.id
+    msi_auth_for_monitoring_enabled = true
   }
 
   depends_on = [azurerm_role_assignment.cluster_identity_operator]

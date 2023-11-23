@@ -33,15 +33,18 @@ variable "aks_workload_pool" {
     max_node_count = number
   })
 }
-variable "container_registry" {
-  type = object({
-    name                = string
-    resource_group_name = string
-  })
+variable "container_registry_pushers" {
+  type = list(string)
 }
 variable "keyvault_readers" {
   type = list(string)
 }
 variable "keyvault_admins" {
   type = list(string)
+}
+variable "k8s_namespace" {
+  type = string
+}
+variable "k8s_service_account_name" {
+  type = string
 }
