@@ -95,7 +95,7 @@ jobs:
           -backend-config="container_name=${{ vars.BACKEND_STORAGE_CONTAINER_NAME }}" \
           -backend-config="key=${{ vars.APPLICATION_NAME }}-${{ vars.ENVIRONMENT_NAME }}"
 
-        terraform apply -refresh-only
+        terraform apply -refresh-only -auto-approve
 
         registry_endpoint=$(terraform output -raw registry_endpoint)
         echo $registry_endpoint
