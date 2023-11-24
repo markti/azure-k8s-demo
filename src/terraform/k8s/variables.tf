@@ -29,3 +29,12 @@ variable "web_api_image" {
     version = string
   })
 }
+variable "keyvault_name" {
+  type = string
+}
+variable "tenant_id" {
+  type = string
+}
+variable "backend_endpoint" {
+  type = string
+}

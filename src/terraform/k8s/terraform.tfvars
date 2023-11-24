@@ -10,3 +10,4 @@ web_api_image = {
   name    = "fleetops-backend"
   version = "2023.11.6"
 }
+backend_endpoint = "http://20.14.7.63"

@@ -70,10 +70,11 @@ resource "kubernetes_service" "web_app" {
 
 resource "kubernetes_config_map" "web_app" {
   metadata {
-    name = "${local.web_app_name}-config"
+    name      = "${local.web_app_name}-config"
+    namespace = var.namespace
   }
 
   data = {
-    BackendEndpoint = "20.40.30.216"
+    BackendEndpoint = var.backend_endpoint
   }
 }

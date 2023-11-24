@@ -20,3 +20,4 @@ keyvault_readers           = ["43072cf2-ef02-43cb-99b5-c480a67550f0"]
 keyvault_admins            = ["43072cf2-ef02-43cb-99b5-c480a67550f0"]
 k8s_service_account_name   = "workload"
 k8s_namespace              = "app"
+database_admin_username    = "psqladmin"

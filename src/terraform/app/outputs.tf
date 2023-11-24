@@ -14,3 +14,6 @@ output "service_account_client_id" {
 output "registry_endpoint" {
   value = azurerm_container_registry.main.login_server
 }
+output "tenant_id" {
+  value = data.azurerm_client_config.current.tenant_id
+}
