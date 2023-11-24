@@ -34,6 +34,11 @@ resource "kubernetes_deployment" "web_app" {
           port {
             container_port = 5000
           }
+          env_from {
+            config_map_ref {
+              name = kubernetes_config_map.web_app.metadata.0.name
+            }
+          }
         }
         toleration {
           key      = "workload"
@@ -60,5 +65,15 @@ resource "kubernetes_service" "web_app" {
     selector = {
       app = local.web_app_name
     }
+  }
+}
+
+resource "kubernetes_config_map" "web_app" {
+  metadata {
+    name = "${local.web_app_name}-config"
+  }
+
+  data = {
+    BackendEndpoint = "20.40.30.216"
   }
 }

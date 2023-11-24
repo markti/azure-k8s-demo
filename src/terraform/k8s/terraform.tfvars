@@ -8,5 +8,5 @@ web_app_image = {
 }
 web_api_image = {
   name    = "fleetops-backend"
-  version = "2023.11.5"
+  version = "2023.11.6"
 }
